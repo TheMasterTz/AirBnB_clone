@@ -30,3 +30,11 @@ class FileStorage:
     def new(self, obj):
         key = obj.__class__.__name__ + '.' + obj.id
         self.__objects[key] = obj
+
+def save(self):
+        dic = {}
+        for key, value in self.__objects.items():
+            dic[key] = value.to_dict()
+
+        with open(self.__file_path, 'w', encoding='utf-8') as f:
+            f.write(json.dumps(dic))
