@@ -9,3 +9,17 @@ from models.city import City
 from models.place import Place
 from models.state import State
 from models.review import Review
+
+
+class FileStorage:
+    __file_path = "file.json"
+    __objects = {}
+    classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+    }
