@@ -7,7 +7,3 @@ class State(BaseModel):
 <<<<<<< HEAD
     """class State inherited from BaseModel"""
     name = ""
-=======
-        """class State inherited from BaseModel"""
-            name = ""
->>>>>>> testing

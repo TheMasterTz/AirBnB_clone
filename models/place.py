@@ -1,23 +1,7 @@
-<<<<<<< HEAD
+#!/usr/bin/python3
 """User Class"""
 from models.base_model import BaseModel
 
-
-class Place(BaseModel):
-    """Place Class inherit from BaseModel"""
-
-    city_id = ""
-    user_id = ""
-    name = ""
-    description = ""
-    number_rooms = 0
-    number_bathrooms = 0
-    max_guest = 0
-    price_by_night = 0
-    latitude = 0.0
-    longitude = 0.0
-    amenity_ids = []
-=======
 class Place(BaseModel):
         """Place Class inherit from BaseModel"""
 
@@ -31,5 +15,4 @@ class Place(BaseModel):
             price_by_night = 0
             latitude = 0.0
             longitude = 0.0
-            amenity_ids = []
->>>>>>> testing
+            amenity_ids =[]
