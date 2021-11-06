@@ -11,6 +11,7 @@ from models.review import Review
 
 
 class FileStorage:
+    """class FileStorage"""
     __file_path = "file.json"
     __objects = {}
     classes = {
@@ -24,13 +25,16 @@ class FileStorage:
     }
 
     def all(self):
+        """Returns dictionary"""
         return self.__objects
 
     def new(self, obj):
+        """Assigns objects"""
         key = obj.__class__.__name__ + '.' + obj.id
         self.__objects[key] = obj
 
     def save(self):
+        """Writes an object to a file"""
         dic = {}
         for key, value in self.__objects.items():
             dic[key] = value.to_dict()
@@ -39,6 +43,7 @@ class FileStorage:
             f.write(json.dumps(dic))
 
     def reload(self):
+        """Retrieves objects from a file"""
         new = {}
         try:
             with open(self.__file_path, "r") as f:
