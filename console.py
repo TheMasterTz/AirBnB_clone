@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #!/usr/bin/python3
 import cmd, json, shlex
 from models.base_model import BaseModel
@@ -157,4 +155,3 @@ class HBNBCommand(cmd.Cmd):
 if __name__ == "__main__":
     	interprete = HBNBCommand()
     	interprete.cmdloop()
->>>>>>> testing
