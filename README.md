@@ -42,7 +42,7 @@ git clone git@github.com:TheMasterTz/AirBnB_clone.git
 ## Enter the folder and then run the [console.py]() file:
 ```
 cd AirBnB_clone
-./console.pyz
+./console.py
 ```
 ## Accepted commands:
 | Command   | Description | Usage example |
