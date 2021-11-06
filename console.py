@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+command interpreter
+"""
 import cmd
 import json
 import shlex
@@ -12,7 +15,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Interprete de comandos"""
+    """Interpreted commands"""
     classes = {
         "BaseModel": BaseModel,
         "User": User,
@@ -27,19 +30,23 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, *args):
-        """Quit command to exit the program"""
+        """Quit command to exit the program
+        """
         return True
 
     def do_EOF(self, *args):
-        """Quit command to exit the program"""
+        """EOF command to exit the program
+        """
         return True
 
     def emptyline(self):
-        """baseline"""
+        """Empty Line does not execute previous command
+        """
         pass
 
     def do_create(self, arg):
-        """Create new instance of class"""
+        """Create new instance of class
+        """
         args = arg.split(' ')
 
         if len(args[0]) == 0:
@@ -54,7 +61,8 @@ class HBNBCommand(cmd.Cmd):
             var.save()
 
     def do_show(self, arg):
-        """Show Class Instance by ID #"""
+        """Show Class Instance by ID #
+        """
         args = arg.split(' ')
 
         if len(args[0]) == 0:
@@ -75,7 +83,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id."""
+        """Deletes an instance based on the class name and id.
+        """
         args = arg.split(" ")
         flag = 0
 
@@ -104,7 +113,9 @@ class HBNBCommand(cmd.Cmd):
                     json.dump(file_json, f)
 
     def do_all(self, arg):
-        """show all instances"""
+        """Prints all string representation of all instances based or
+            not on the class name.
+        """
         args = arg.split(" ")
         if len(args[0]) == 0:
             for i in self.ins:
@@ -117,7 +128,9 @@ class HBNBCommand(cmd.Cmd):
                     print(x)
 
     def do_update(self, arg):
-        """update instance"""
+        """Updates an instance based on the class name and id by adding
+            or updating attribute (save the change into the JSON file)
+        """
         if arg == "":
             print("** class name missing **")
         args = shlex.split(arg)
@@ -155,5 +168,5 @@ class HBNBCommand(cmd.Cmd):
                         ins.save()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
