@@ -33,3 +33,127 @@ be able to manage the objects of our project:
  - What is **kwargs and how to use it
  - How to handle named arguments in a function
 
+# Installation
+
+## Clone the repository:
+```
+git clone git@github.com:TheMasterTz/AirBnB_clone.git
+```
+## Enter the folder and then run the [console.py]() file:
+```
+cd AirBnB_clone
+./console.pyz
+```
+## Accepted commands:
+| Command   | Description | Usage example |
+| --------- | ----------- | ------- |
+| `help`      | lists available commands or details help with a specific command | `help <command>` |
+| `all`       | shows all instances of a Class | `all <object>` |
+| `create`    | creates a new instance of a Class | `create <object>` |
+| `destroy`   | destroys an instance of a Class via ID | `destroy <object> <id>` |
+| `show` | shows object's attributes | `show <object> <id>` |
+| `update`    | updates instance of a Class | `update <object> <id> <attribute> <value>` |
+| `quit`      | command to exit the program | `quit` |
+| `EOF`       | command ro exit the program | `EOF` |
+
+## Execution
+
+Your shell should work like this in interactive mode:
+
+```
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF help quit
+
+(hbnb)
+(hbnb)
+(hbnb) quit
+$
+```
+
+But also in non-interactive mode: (like the Shell project in C)
+
+```
+$ echo "help" | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF help quit
+(hbnb)
+
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF help quit
+
+(hbnb)
+$
+```
+
+## Usage Examples
+
+**Launching the console**
+
+```
+$ ./console.py
+(hbnb) 
+```
+
+**Creating a new object**
+
+```
+(hbnb) create
+** class name missing **
+(hbnb) create User
+670265eb-5982-489e-8b92-2dff054f0776
+```
+
+**Show an object**
+
+```
+(hbnb) show User
+** instance id missing **
+(hbnb) show User 670265eb-5982-489e-8b92-2dff054f0776
+[User] (670265eb-5982-489e-8b92-2dff054f0776) {'created_at': datetime.datetime(2020, 2, 19, 18, 8, 58, 458246), 'id': '670265eb-5982-489e-8b92-2dff054f0776', 'updated_at': datetime.datetime(2020, 2, 19, 18, 8, 58, 458261)}
+```
+
+**Update an object**
+
+```
+(hbnb) all
+["[User] (70f71c16-962b-48ad-9df8-9203fe23d612) {'created_at': datetime.datetime(2020, 2, 19, 18, 11, 32, 341144), 'id': '70f71c16-962b-48ad-9df8-9203fe23d612', 'updated_at': datetime.datetime(2020, 2, 19, 18, 11, 32, 341161)}"]
+(hbnb) update
+** class name missing **
+(hbnb) update User
+** instance id missing **
+(hbnb) update User 70f71c16-962b-48ad-9df8-9203fe23d612
+** attribute name missing **
+(hbnb) update User 70f71c16-962b-48ad-9df8-9203fe23d612  Age "20"
+(hbnb) all
+["[User] (70f71c16-962b-48ad-9df8-9203fe23d612) {'Age': 20, 'created_at': datetime.datetime(2020, 2, 19, 18, 11, 32, 341144), 'id': '70f71c16-962b-48ad-9df8-9203fe23d612', 'updated_at': datetime.datetime(2020, 2, 19, 18, 13, 9, 937933)}"]
+(hbnb)
+```
+
+**Destroy an object**
+
+```
+(hbnb) destroy
+** class name missing **
+(hbnb) destroy User
+** instance id missing **
+(hbnb) destroy User 670265eb-5982-489e-8b92-2dff054f0776
+(hbnb)
+```
+
+# Authors:
+
+- [TheMasterTz](https://github.com/TheMasterTz)
+- [sebasrengi](https://github.com/sebasrengi)
