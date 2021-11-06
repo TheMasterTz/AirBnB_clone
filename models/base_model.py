@@ -3,6 +3,8 @@
 import uuid
 import models
 from datetime import datetime
+
+
 class BaseModel:
     """class Base Model"""
     def __init__(self, *args, **kwargs):
@@ -18,7 +20,7 @@ class BaseModel:
                     val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
 
                 if arg != '__class__':
-                        setattr(self, arg, val)
+                    setattr(self, arg, val)
 
     def __str__(self):
         """string representation"""
