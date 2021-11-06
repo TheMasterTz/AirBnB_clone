@@ -8,6 +8,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     	"""Interprete de comandos"""
     	classes = {
@@ -32,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
         	return True
 
     	def emptyline(self):
-        """baseline"""
+        """baseline\n"""
         	pass
 
     	def do_create(self, arg):
@@ -51,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
             		var.save()
 
     	def do_show(self, arg):
-        """Show Class Instance by ID #"""
+        """Show Class Instance by ID #\n"""
         	args = arg.split(' ')
 
         	if len(args[0]) == 0:
@@ -61,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
         	elif len(args) == 1:
             		print("** instance id missing **")
 
-       	else:
+    	else:
             string = "[{}] ({})".format(args[0], args[1])
             valida = 0
             for ins in self.ins:
@@ -113,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
                 		if args[0] in x.__str__():
                     			print(x)
 	def do_update(self, arg):
-        """update instance"""
+        """update instance\n"""
         	if arg == "":
             		print("** class name missing **")
         	args = shlex.split(arg)
