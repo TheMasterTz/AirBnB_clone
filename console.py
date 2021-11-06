@@ -27,19 +27,19 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, *args):
-        """Quit command to exit the program\n"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, *args):
-        """Quit command to exit the program\n"""
+        """Quit command to exit the program"""
         return True
 
     def emptyline(self):
-        """baseline\n"""
+        """baseline"""
         pass
 
     def do_create(self, arg):
-        """Create new instance of class\n"""
+        """Create new instance of class"""
         args = arg.split(' ')
 
         if len(args[0]) == 0:
@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
             var.save()
 
     def do_show(self, arg):
-        """Show Class Instance by ID #\n"""
+        """Show Class Instance by ID #"""
         args = arg.split(' ')
 
         if len(args[0]) == 0:
@@ -75,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id.\n"""
+        """Deletes an instance based on the class name and id."""
         args = arg.split(" ")
         flag = 0
 
@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
                     json.dump(file_json, f)
 
     def do_all(self, arg):
-        """function all\n"""
+        """show all instances"""
         args = arg.split(" ")
         if len(args[0]) == 0:
             for i in self.ins:
@@ -117,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
                     print(x)
 
     def do_update(self, arg):
-        """update instance\n"""
+        """update instance"""
         if arg == "":
             print("** class name missing **")
         args = shlex.split(arg)
