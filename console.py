@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-import cmd, json, shlex
+import cmd
+import json
+import shlex
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -112,19 +114,19 @@ class HBNBCommand(cmd.Cmd):
         else:
             for x in self.ins:
                 if args[0] in x.__str__():
-                        print(x)
+                    print(x)
 
     def do_update(self, arg):
         """update instance\n"""
         if arg == "":
-                print("** class name missing **")
+            print("** class name missing **")
         args = shlex.split(arg)
 
         if args[0] not in self.classes:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
 
         elif len(args) == 1:
-                print("** instance id missing **")
+            print("** instance id missing **")
 
         else:
             flag = 0
@@ -154,5 +156,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-        interprete = HBNBCommand()
-        interprete.cmdloop()
+    interprete = HBNBCommand()
+    interprete.cmdloop()
