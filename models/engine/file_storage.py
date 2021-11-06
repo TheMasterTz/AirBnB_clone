@@ -31,10 +31,22 @@ class FileStorage:
         key = obj.__class__.__name__ + '.' + obj.id
         self.__objects[key] = obj
 
-def save(self):
+    def save(self):
         dic = {}
         for key, value in self.__objects.items():
             dic[key] = value.to_dict()
 
         with open(self.__file_path, 'w', encoding='utf-8') as f:
             f.write(json.dumps(dic))
+
+    def reload(self):
+        new = {}
+        try:
+            with open(self.__file_path, "r") as f:
+                new = json.loads(f.read())
+
+                for key, value in new.items():
+                    self.__objects[key] = self.classes[
+                        value["__class__"]](**value)
+        except:
+            pass
