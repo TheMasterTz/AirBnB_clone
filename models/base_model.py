@@ -1,14 +1,35 @@
 #!/usr/bin/python3
-"""class Base Model"""
+"""
+class Base Model
+"""
 import uuid
 import models
 from datetime import datetime
 
 
 class BaseModel:
-    """class Base Model"""
+    """Base Model Class
+
+    This is the Base Model that take care of the
+    initialization, serialization and deserialization
+    of the future instances.
+
+    Attributes:
+        id (str): It's an UUID for when an instance is created.
+        created_at (datetime): The current date and time that
+            an instance is created.
+        updated_at (datetime): The current date and time that
+            an instance is created and it will be updated every
+            time that the object changes.
+    """
+
     def __init__(self, *args, **kwargs):
-        """ initialize Base Model """
+        """Base Model __init__ Method
+
+        Here, the default values of a Base Model
+        instance are initialized.
+
+        """
         if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -23,17 +44,36 @@ class BaseModel:
                     setattr(self, arg, val)
 
     def __str__(self):
-        """string representation"""
+        """Representation of the class for the user
+
+        Example:
+            $ bm = BaseModel()
+            $ print(bm)
+
+            This method prints the content of the Base Model
+            class with this format
+
+            $ [<class name>] (<self.id>) <self.__dict__>
+        """
         return "[{0}] ({1}) {2}".format(
             self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
-        """save method"""
+        """Updates a Base Model instance
+
+        Updates the public instance attribute `updated_at`
+        with the current datetime and dumps the class data
+        into a file
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """to dictionary method"""
+        """Converts the information of the class to human-readable format
+
+        Returns a new dictionary containing all keys/values
+        of __dict__ of the instance.
+        """
         dictionary = self.__dict__.copy()
         dictionary['__class__'] = self.__class__.__name__
         dictionary['created_at'] = self.created_at.isoformat()
