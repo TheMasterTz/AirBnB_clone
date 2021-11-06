@@ -23,3 +23,6 @@ class FileStorage:
         "Place": Place,
         "Review": Review
     }
+
+    def all(self):
+        return self.__objects
