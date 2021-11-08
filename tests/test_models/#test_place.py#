@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+"""Test module"""
+
+import unittest
+from models.place import Place
+
+class TestMyPlace(unittest.TestCase):
+        """New class to test class Place"""
+
+def setUp(self):
+            """Setting up"""
+                    self.new = Place()
+
+                        def tearDown(self):
+                            """Cleaning up after each test"""
+                                    del self.new
+
+                                            def test_is_instance(self):
