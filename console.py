@@ -133,13 +133,16 @@ class HBNBCommand(cmd.Cmd):
         """
         if arg == "":
             print("** class name missing **")
+            return
         args = shlex.split(arg)
 
         if args[0] not in self.classes:
             print("** class doesn't exist **")
+            return
 
         elif len(args) == 1:
             print("** instance id missing **")
+            return
 
         else:
             flag = 0
@@ -149,10 +152,13 @@ class HBNBCommand(cmd.Cmd):
                     flag = 1
             if flag == 0:
                 print("** no instance found **")
+                return
             elif len(args) == 2:
                 print("** attribute name missing **")
+                return
             elif len(args) == 3:
                 print("** value missing **")
+                return
             else:
                 idn = "[{}] ({})".format(args[0], args[1])
                 for ins in self.ins:
