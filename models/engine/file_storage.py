@@ -40,7 +40,7 @@ class FileStorage:
             dic[key] = value.to_dict()
 
         with open(self.__file_path, 'w', encoding='utf-8') as f:
-            f.write(json.dumps(dic))
+            f.write(json.dumps(dic, indent=4))
 
     def reload(self):
         """Retrieves objects from a file"""

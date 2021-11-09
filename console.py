@@ -5,6 +5,7 @@ command interpreter
 import cmd
 import json
 import shlex
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -73,20 +74,17 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
         else:
-            string = "[{}] ({})".format(args[0], args[1])
-            valida = 0
-            for ins in self.ins:
-                if string in ins.__str__():
-                    print(ins)
-                    valida = 1
-            if valida == 0:
+            dicIns = models.storage.all()
+            key = args[0] + '.' + args[1]
+            if key in dicIns:
+                print(dicIns[key])
+            else:
                 print("** no instance found **")
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id.
         """
         args = arg.split(" ")
-        flag = 0
 
         if len(args[0]) == 0:
             print("** class name missing **")
@@ -96,11 +94,11 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
         else:
-            idn = "[{}] ({})".format(args[0], args[1])
-            for ins in self.ins:
-                if idn in ins.__str__():
-                    self.ins.remove(ins)
-                    flag = 1
+            dicIns = models.storage.all()
+            key = args[0] + '.' + args[1]
+            if key in dicIns:
+                del dicIns[key]
+                flag = 1
             if flag == 0:
                 print("** no instance found **")
             else:
@@ -110,22 +108,29 @@ class HBNBCommand(cmd.Cmd):
                 del file_json['{}.{}'.format(args[0], args[1])]
 
                 with open(HBNBCommand.file_path, 'w', encoding='utf-8') as f:
-                    json.dump(file_json, f)
+                    json.dump(file_json, f, indent=4)
 
     def do_all(self, arg):
         """Prints all string representation of all instances based or
             not on the class name.
         """
         args = arg.split(" ")
+        dicIns = models.storage.all()
+
         if len(args[0]) == 0:
-            for i in self.ins:
-                print(i.__str__())
+            for key in dicIns:
+                self.ins.append(dicIns[key].__str__())
+            print(self.ins.__str__())
+            self.ins = []
+
         elif args[0] not in self.classes:
             print("** class doesn't exist **")
         else:
-            for x in self.ins:
-                if args[0] in x.__str__():
-                    print(x)
+            for key in dicIns:
+                if arg in key:
+                    self.ins.append(dicIns[key].__str__())
+            print(self.ins.__str__())
+            self.ins = []
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding
@@ -145,14 +150,12 @@ class HBNBCommand(cmd.Cmd):
             return
 
         else:
-            flag = 0
-            idn = "[{}] ({})".format(args[0], args[1])
-            for ins in self.ins:
-                if idn in ins.__str__():
-                    flag = 1
-            if flag == 0:
+            dicIns = models.storage.all()
+            key = args[0] + '.' + args[1]
+            if key not in dicIns:
                 print("** no instance found **")
                 return
+
             elif len(args) == 2:
                 print("** attribute name missing **")
                 return
@@ -160,18 +163,17 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return
             else:
-                idn = "[{}] ({})".format(args[0], args[1])
-                for ins in self.ins:
-                    if idn in ins.__str__():
+                if key in dicIns:
+                    insAC = dicIns.get(key)
+                    try:
+                        value = int(args[3])
+                    except ValueError:
                         try:
-                            value = int(args[3])
+                            value = float(args[3])
                         except ValueError:
-                            try:
-                                value = float(args[3])
-                            except ValueError:
-                                value = args[3]
-                        setattr(ins, args[2], value)
-                        ins.save()
+                            value = args[3]
+                    setattr(insAC, args[2], value)
+                    models.storage.save()
 
 
 if __name__ == '__main__':
