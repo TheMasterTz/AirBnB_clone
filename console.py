@@ -148,19 +148,18 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
             return
+        elif len(args) == 2:
+                print("** attribute name missing **")
+                return
+        elif len(args) == 3:
+            print("** value missing **")
+            return
 
         else:
             dicIns = models.storage.all()
             key = args[0] + '.' + args[1]
             if key not in dicIns:
                 print("** no instance found **")
-                return
-
-            elif len(args) == 2:
-                print("** attribute name missing **")
-                return
-            elif len(args) == 3:
-                print("** value missing **")
                 return
             else:
                 if key in dicIns:
