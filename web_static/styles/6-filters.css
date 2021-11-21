@@ -65,11 +65,14 @@ h4{
     background-color:#FAFAFA;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
     padding-top:30px;
     padding-bottom:40px;
     padding-left:20px;
     position:relative;
-
 }
 .sublist{
     list-style-type:none;
